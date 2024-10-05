@@ -145,8 +145,7 @@ func (bc *Chain) ChangeBlockUn(id int, transaction string) {
 	for currBlock != nil {
 		if currBlock.id == id {
 			currBlock.transaction = transaction
-			blockData := fmt.Sprintf("%s%d%s%d", currBlock.transaction, currBlock.nonce, currBlock.previousHash, currBlock.id)
-			currBlock.currentHash = CalculateHash(blockData)
+			currBlock.ProofOfWork(2)
 			return
 		}
 		currBlock = currBlock.next
