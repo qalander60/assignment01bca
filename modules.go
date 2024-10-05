@@ -163,13 +163,11 @@ func (bc *Chain) ChangeBlock(id int, transaction string) {
 	for currBlock != nil {
 		if currBlock.id == id {
 			currBlock.transaction = transaction
-			blockData := fmt.Sprintf("%s%d%s%d", currBlock.transaction, currBlock.nonce, currBlock.previousHash, currBlock.id)
-			currBlock.currentHash = CalculateHash(blockData)
+			currBlack.ProofOfWork(2)
 			nextBlock := currBlock.next
 			for nextBlock != nil {
 				nextBlock.previousHash = currBlock.currentHash
-				blockData = fmt.Sprintf("%s%d%s%d", nextBlock.transaction, nextBlock.nonce, nextBlock.previousHash, nextBlock.id)
-				nextBlock.currentHash = CalculateHash(blockData)
+				nextBlock.ProofOfWork(2)
 				currBlock = nextBlock
 				nextBlock = nextBlock.next
 			}
