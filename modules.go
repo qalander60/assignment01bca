@@ -162,7 +162,7 @@ func (bc *Chain) ChangeBlock(id int, transaction string) {
 	for currBlock != nil {
 		if currBlock.id == id {
 			currBlock.transaction = transaction
-			currBlack.ProofOfWork(2)
+			currBlock.ProofOfWork(2)
 			nextBlock := currBlock.next
 			for nextBlock != nil {
 				nextBlock.previousHash = currBlock.currentHash
